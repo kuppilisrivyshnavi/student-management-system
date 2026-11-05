@@ -6,7 +6,8 @@ pipeline {
     environment {
         JAVA_HOME = 'C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.4.7-hotspot'
         MAVEN_HOME = 'D:\\DevOps\\Tools\\apache-maven-3.10.0-bin\\apache-maven-3.10.0'
-        PATH = "${JAVA_HOME}\\bin;${MAVEN_HOME}\\bin;${env.PATH}"
+
+        PATH = "C:\\Windows\\System32;${JAVA_HOME}\\bin;${MAVEN_HOME}\\bin;${env.PATH}"
     }
 
     stages {
@@ -34,9 +35,11 @@ pipeline {
     }
 
     post {
+
         success {
             archiveArtifacts artifacts: 'target/*.jar',
                              fingerprint: true
+
             echo 'Build completed successfully!'
         }
 
