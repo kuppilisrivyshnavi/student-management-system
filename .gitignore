@@ -1,14 +1,11 @@
-# Maven build files
+# Local H2 database
+data/
+*.mv.db
+*.trace.db
+
+# Maven build output
 target/
 
-# Java compiled files
-*.class
-
-# VS Code settings
-.vscode/
-
-# IntelliJ settings
+# IDE files
 .idea/
-
-# Logs
-*.log
+.vscode/

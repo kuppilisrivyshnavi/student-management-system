@@ -1,15 +1,22 @@
-# Use Maven with Java 17
-FROM maven:3.9.9-eclipse-temurin-17
 
-# Set working directory
+# Stage 1: Build the Spring Boot application
+FROM maven:3.9.9-eclipse-temurin-17 AS build
+
 WORKDIR /app
 
-# Copy project files
 COPY pom.xml .
 COPY src ./src
 
-# Build and test the project
 RUN mvn clean package
 
-# Keep the generated JAR available
-CMD ["bash"]
+# Stage 2: Run the application
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY --from=build /app/target/student-management-1.0-SNAPSHOT.jar app.jar
+
+EXPOSE 8081
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+

@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Student Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <h2>Student MS</h2>
+        <nav>
+            <a th:href="@{/}">Dashboard</a>
+            <a th:href="@{/students/new}">Add Student</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <h1 th:text="${pageTitle}">Student Form</h1>
+
+        <form th:action="@{/students/save}"
+              th:object="${student}"
+              method="post">
+
+            <input type="hidden" name="existingId"
+                   th:value="${existingId}">
+
+            <div class="form-group">
+                <label for="id">Student ID</label>
+                <input type="number"
+                       id="id"
+                       th:field="*{id}"
+                       placeholder="Enter student ID"
+                       required
+                       th:readonly="${existingId != null}">
+                <small class="error" th:errors="*{id}"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Student Name</label>
+                <input type="text"
+                       id="name"
+                       th:field="*{name}"
+                       placeholder="Enter student name"
+                       required>
+                <small class="error" th:errors="*{name}"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text"
+                       id="department"
+                       th:field="*{department}"
+                       placeholder="Enter department"
+                       required>
+                <small class="error" th:errors="*{department}"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"
+                       id="email"
+                       th:field="*{email}"
+                       placeholder="Enter email address"
+                       required>
+                <small class="error" th:errors="*{email}"></small>
+            </div>
+
+            <button type="submit" class="btn">
+                Save Student
+            </button>
+
+            <a th:href="@{/}" class="btn">Cancel</a>
+
+        </form>
+
+    </main>
+</div>
+
+</body>
+</html>
+

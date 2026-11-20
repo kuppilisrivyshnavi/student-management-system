@@ -1,14 +1,14 @@
+
 package com.student;
 
-import javax.swing.SwingUtilities;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class App {
 
     public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() -> {
-            StudentManagementGUI gui = new StudentManagementGUI();
-            gui.setVisible(true);
-        });
+        SpringApplication.run(App.class, args);
     }
 }
+
